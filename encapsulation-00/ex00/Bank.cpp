@@ -1,16 +1,10 @@
 #include "DivideAndRule.hpp"
 
-// bool Bank::accountAlreadyExists(Account &account) const
-// {
-//     for (std::vector<Account *>::const_iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
-//     {
-        
-//     }
-// }
+// Bank interactions
 
 void Bank::addValue(int id, int value)
 {
-    for (std::vector<Account *>::iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
+    for (std::vector<Bank::Account *>::iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
     {
         if (id == (*it)->id)
         {
@@ -29,7 +23,7 @@ void    Bank::giveLoan(int id, int value)
 {
     if (value > liquidity)
         return;//ajouter gestion
-    for (std::vector<Account *>::iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
+    for (std::vector<Bank::Account *>::iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
     {
         if (id == (*it)->id)
         {
@@ -40,6 +34,7 @@ void    Bank::giveLoan(int id, int value)
     }
 }
 
+// Account actions
 
 void Bank::createAccount(int value)
 {
@@ -55,24 +50,9 @@ void Bank::createAccount(int value)
 	    clientAccounts.push_back(new Account(getClientsAccounts().back()->getId() + 1, value));
 }
 
-void Bank::createAccount(Account &account)
-{
-	if (getClientsAccounts().size() >= static_cast<unsigned long>(std::numeric_limits<int>::max()))
-	{
-		//error gestion
-		return;
-	}
-
-    if (!getClientsAccounts().size())
-        account.id = 0;
-    else
-	    account.id = getClientsAccounts().back()->getId() + 1;
-	clientAccounts.push_back(&account);
-}
-
 void Bank::deleteAccount(int id)
 {
-    for (std::vector<Account *>::iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
+    for (std::vector<Bank::Account *>::iterator it = clientAccounts.begin(); it != clientAccounts.end(); it++)
     {
         if (id == (*it)->id)
         {
@@ -82,7 +62,6 @@ void Bank::deleteAccount(int id)
     }
 }
 
-
 void Bank::modifyAccount(int id, int value)
 {
 	if (clientAccounts.size() >= static_cast<unsigned long>(id))
@@ -90,12 +69,14 @@ void Bank::modifyAccount(int id, int value)
 	clientAccounts[id]->value = value;
 }
 
+// Getters
+
 const int &Bank::getLiquidity() const
 {
 	return liquidity;
 }
 
-const std::vector<Account*> &Bank::getClientsAccounts() const
+const std::vector<Bank::Account*> &Bank::getClientsAccounts() const
 {
 	return clientAccounts;
 }

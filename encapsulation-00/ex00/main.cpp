@@ -4,7 +4,7 @@
 #include "DivideAndRule.hpp"
 
 
-std::ostream& operator << (std::ostream& p_os, const Account& p_account)
+std::ostream& operator << (std::ostream& p_os, const Bank::Account& p_account)
 {
 	p_os << "[" << p_account.getId() << "] - [" << p_account.getValue() << "]";
 	return (p_os);
@@ -14,8 +14,8 @@ std::ostream& operator << (std::ostream& p_os, const Bank& p_bank)
 {
 	p_os << "Bank informations : " << std::endl;
 	p_os << "Liquidity : " << p_bank.getLiquidity() << std::endl;
-	std::vector<Account*> accounts = p_bank.getClientsAccounts();
-	for (std::vector<Account*>::iterator it = accounts.begin(); it != accounts.end(); ++it) {
+	std::vector<Bank::Account*> accounts = p_bank.getClientsAccounts();
+	for (std::vector<Bank::Account*>::iterator it = accounts.begin(); it != accounts.end(); ++it) {
     	p_os << *(*it) << std::endl;
 	}
 

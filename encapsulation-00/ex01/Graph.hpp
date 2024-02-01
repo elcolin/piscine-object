@@ -16,7 +16,8 @@ class Graph{
 
     public:
         Graph();
-        addVector(Vector2 newVector){
+        void addVector(Vector2 &newVector){
+            vector2list.push_back
 
         };
         // Graph(float X, float Y): X(X), Y(Y){
