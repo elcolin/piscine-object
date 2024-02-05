@@ -36,6 +36,14 @@ void    Bank::giveLoan(int id, int value)
 
 // Account actions
 
+Bank::Account &Bank::operator[](int id){
+
+    if (id >= clientAccounts.size())
+        return *(*clientAccounts.end());
+    // std::vector<Bank::Account *>::const_iterator it = clientAccounts.begin() + id;
+    return *clientAccounts[id];
+}
+
 void Bank::createAccount(int value)
 {
 	if (getClientsAccounts().size() >= static_cast<unsigned long>(std::numeric_limits<int>::max()))

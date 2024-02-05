@@ -44,6 +44,8 @@ class Bank
 		void deleteAccount(int id);
 		void modifyAccount(int id, int value);
 
+		Account &operator[](int id);
+
 		Bank(int liquidity){
             this->liquidity = liquidity;
         }
